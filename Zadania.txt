@@ -1,0 +1,105 @@
+//1. Zmienną w PHP tworzy się poprzez dodanie znaku $ przed jej nazwą np: $nazwa
+
+$test = "Nazywam się Janek"
+
+/*
+2. Typy zmiennych: 
+string - zmienna typu text
+float - zmienna przecinkowa
+int - zmienna całkowita
+boolean - zmienna typu true/false
+*/
+
+//3. Zawartość zmiennej możemy zaprezentować poprzez wywołanie zmiennej wraz z znakiem $ przednią:
+
+echo $test;
+
+//4. Ciągi znaków możemy łączyć poprzez dodanie między nimi znaku: " . "
+
+echo "Witam" . "bardzo" . "Serdecznie";
+
+//5. 
+
+$isAuthorized = true;
+$isClicked = true; 
+if ($isAuthorized == true && $isClicked == true) {
+    echo "Operacja udana";
+} else {
+    echo "Operacja nieudana!";
+}
+
+//6. 
+
+$isAuthorized = true;
+$isClicked = true; 
+if ($isAuthorized == true or $isClicked == true) {
+    echo "Operacja udana";
+} else {
+    echo "Operacja nieudana!";
+}
+
+//7.
+
+$tablica["FavAnimal"] = "zółw";
+$tablica["FavFood"] = "pizza";
+$tablica["FavMovie"] = "The Room";
+
+//8. Możemy powyższą tablę wyświetlić w następujący sposób:
+
+echo "FavAnimal: " . $tablica["FavAnimal"] . "<br>" . "FavFood: " . $tablica["FavFood"] . "<br>" . "FavMovie: " . $tablica["FavMovie"];
+
+//9. Pobrać znak dowolnego ciągu możemy z pomocą funkcji substr która odnosi się bezpośrednio do naszej drugiej zmiennej:
+
+
+$test = "To jest test";
+$litera = substr($test, 5, 1);
+
+echo "Piątą literą ciągu jest: " . $litera;
+
+//10. 
+
+$katalog = 'C:';
+$pliki = scandir($katalog);
+foreach($pliki as $plik) {
+    echo '<p>'.$plik.'</p>';
+}
+
+//11. 
+
+$katalog = 'C:';
+$pliki = scandir($katalog);
+
+foreach($pliki as $plik) {
+    if ($plik[0] == "a"){
+        echo '<p>'.$plik.'</p>';
+    }
+}
+
+//13. Aby połączyć się z baza danych użyjemy funkcji mysqli używając poniższych argumentów:
+
+$host = "localhost";
+$login = "root";
+$pass = "";
+$basename = "nazwabazy"; 
+
+$mysqli = new mysqli($host, $login, $pass, $basename);
+
+//14. Podczas pobierania danych dodać warunek:
+or die('Brak połączenia z serwerem MySQL.<br />Błąd: '.mysql_error());
+
+//16.   Query param jest to wartość wpisana w przeglądarce po naszym url, rozpoczynającą się znakiem "?". 
+//      Dzięki niemu możemy zdefiniować interesujące nas dane np: "?user_id=1" - wyświetli nam usera o id 1
+
+//17. Aby pobrać query param i go wyświetlić potrzebujemy:
+
+//Połączenie z bazą danych (zadanie 13)
+$requestedUser = $_GET['posts_id']; //pobieranie
+$result = $mysqli->query("SELECT * FROM posts WHERE id = $requestedUser"); //wyświetlanie
+
+//18. Przykład użycia metody post w logowaniu:
+
+<form name="logowanie" action="" method="post">
+Login <input type="text" name="login"/><br /><br />
+Hasło <input type="password" name="haslo"/><br /><br />
+<INPUT TYPE="submit" VALUE="Logowanie">
+</form>
